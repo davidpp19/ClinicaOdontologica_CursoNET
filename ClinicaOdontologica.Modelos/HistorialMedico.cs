@@ -27,11 +27,10 @@ namespace ClinicaOdontologica.Modelos
         [MaxLength(4)]
         public string tipoSangre { get; set; }
 
-        [ForeignKey("Paciente")]
+        [ForeignKey("IdPaciente")]
         [Column("id_paciente")]
+        [Required]
         public int IdPaciente { get; set; }
         public Paciente? Paciente { get; set; }
-
     }
-
 }

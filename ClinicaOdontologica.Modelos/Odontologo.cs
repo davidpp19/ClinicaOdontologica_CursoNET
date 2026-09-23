@@ -28,7 +28,7 @@ namespace ClinicaOdontologica.Modelos
         [Required]
         public string registroMedico { get; set; }
 
-        [ForeignKey("IdEspecialidad")]
+        [ForeignKey("Especialidad")]
         [Column("id_especialidad")]
         [Required]
         public int IdEspecialidad { get; set; }

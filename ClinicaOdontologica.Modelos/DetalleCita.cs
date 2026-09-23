@@ -23,12 +23,12 @@ namespace ClinicaOdontologica.Modelos
         [MaxLength(200)]
         public string? observacion { get; set; }
 
-        [ForeignKey("IdCita")]
+        [ForeignKey("Cita")]
         [Column("id_cita")]
         [Required]
         public int IdCita { get; set; }
 
-        [ForeignKey("IdTratamiento")]
+        [ForeignKey("Tratamiento")]
         [Column("id_tratamiento")]
         [Required]
         public int IdTratamiento { get; set; }

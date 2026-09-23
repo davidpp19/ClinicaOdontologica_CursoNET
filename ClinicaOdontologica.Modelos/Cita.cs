@@ -27,17 +27,17 @@ namespace ClinicaOdontologica.Modelos
         [MaxLength(20)]
         public string? estadoCita { get; set; }
 
-        [ForeignKey("IdPaciente")]
+        [ForeignKey("Paciente")]
         [Column("id_paciente")]
         [Required]
         public int IdPaciente { get; set; }
 
-        [ForeignKey("IdOdontologo")]
+        [ForeignKey("Odontologo")]
         [Column("id_odontologo")]
         [Required]
         public int IdOdontologo { get; set; }
 
-        [ForeignKey("IdConsultorio")]
+        [ForeignKey("Consultorio")]
         [Column("id_consultorio")]
         [Required]
         public int IdConsultorio { get; set; }

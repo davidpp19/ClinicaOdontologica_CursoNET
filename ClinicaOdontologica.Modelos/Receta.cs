@@ -23,7 +23,7 @@ namespace ClinicaOdontologica.Modelos
         [Required]
         public string indicacion { get; set; }
 
-        [ForeignKey("IdCita")]
+        [ForeignKey("Cita")]
         [Column("id_cita")]
         [Required]
         public int IdCita { get; set; }

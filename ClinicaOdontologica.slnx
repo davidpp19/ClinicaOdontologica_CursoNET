@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ClinicaOdontologica.API/ClinicaOdontologica.API.csproj" Id="5eaa19d5-e08e-4d0b-be7a-4b5bd434c815" />
   <Project Path="ClinicaOdontologica.Modelos/ClinicaOdontologica.Modelos.csproj" />
 </Solution>

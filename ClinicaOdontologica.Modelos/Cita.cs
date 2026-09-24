@@ -47,5 +47,10 @@ namespace ClinicaOdontologica.Modelos
         public Paciente? Paciente { get; set; }
         public Odontologo? Odontologo { get; set; }
         public Consultorio? Consultorio { get; set; }
+
+        //Relaciones
+
+        List<DetalleCita>? DetallesCita { get; set; } = new List<DetalleCita>();
+        List<Receta>? Recetas { get; set; } = new List<Receta>();
     }
 }

@@ -22,5 +22,8 @@ namespace ClinicaOdontologica.Modelos
 
         [MaxLength(200)]
         public string? descripcion { get; set; }
+
+        //Relaciones
+        List<Odontologo>? Odontologos { get; set; } = new List<Odontologo>();
     }
 }

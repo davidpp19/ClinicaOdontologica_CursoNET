@@ -16,14 +16,14 @@ public class OdontologosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Odontologo>>> GetOdontologo()
     {
-        return await _context.Odontologo.ToListAsync();
+        return await _context.Odontologos.ToListAsync();
     }
 
     // GET: api/Odontologo/5
     [HttpGet("{idodontologo}")]
     public async Task<ActionResult<Odontologo>> GetOdontologo(int idodontologo)
     {
-        var odontologo = await _context.Odontologo.FindAsync(idodontologo);
+        var odontologo = await _context.Odontologos.FindAsync(idodontologo);
 
         if (odontologo == null)
         {
@@ -69,7 +69,7 @@ public class OdontologosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Odontologo>> PostOdontologo(Odontologo odontologo)
     {
-        _context.Odontologo.Add(odontologo);
+        _context.Odontologos.Add(odontologo);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetOdontologo", new { idodontologo = odontologo.IdOdontologo }, odontologo);
@@ -79,13 +79,13 @@ public class OdontologosController : ControllerBase
     [HttpDelete("{idodontologo}")]
     public async Task<IActionResult> DeleteOdontologo(int? idodontologo)
     {
-        var odontologo = await _context.Odontologo.FindAsync(idodontologo);
+        var odontologo = await _context.Odontologos.FindAsync(idodontologo);
         if (odontologo == null)
         {
             return NotFound();
         }
 
-        _context.Odontologo.Remove(odontologo);
+        _context.Odontologos.Remove(odontologo);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class OdontologosController : ControllerBase
 
     private bool OdontologoExists(int? idodontologo)
     {
-        return _context.Odontologo.Any(e => e.IdOdontologo == idodontologo);
+        return _context.Odontologos.Any(e => e.IdOdontologo == idodontologo);
     }
 }

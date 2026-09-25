@@ -16,14 +16,14 @@ public class TratamientosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Tratamiento>>> GetTratamiento()
     {
-        return await _context.Tratamiento.ToListAsync();
+        return await _context.Tratamientos.ToListAsync();
     }
 
     // GET: api/Tratamiento/5
     [HttpGet("{idtratamiento}")]
     public async Task<ActionResult<Tratamiento>> GetTratamiento(int idtratamiento)
     {
-        var tratamiento = await _context.Tratamiento.FindAsync(idtratamiento);
+        var tratamiento = await _context.Tratamientos.FindAsync(idtratamiento);
 
         if (tratamiento == null)
         {
@@ -69,7 +69,7 @@ public class TratamientosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Tratamiento>> PostTratamiento(Tratamiento tratamiento)
     {
-        _context.Tratamiento.Add(tratamiento);
+        _context.Tratamientos.Add(tratamiento);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetTratamiento", new { idtratamiento = tratamiento.idTratamiento }, tratamiento);
@@ -79,13 +79,13 @@ public class TratamientosController : ControllerBase
     [HttpDelete("{idtratamiento}")]
     public async Task<IActionResult> DeleteTratamiento(int? idtratamiento)
     {
-        var tratamiento = await _context.Tratamiento.FindAsync(idtratamiento);
+        var tratamiento = await _context.Tratamientos.FindAsync(idtratamiento);
         if (tratamiento == null)
         {
             return NotFound();
         }
 
-        _context.Tratamiento.Remove(tratamiento);
+        _context.Tratamientos.Remove(tratamiento);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class TratamientosController : ControllerBase
 
     private bool TratamientoExists(int? idtratamiento)
     {
-        return _context.Tratamiento.Any(e => e.idTratamiento == idtratamiento);
+        return _context.Tratamientos.Any(e => e.idTratamiento == idtratamiento);
     }
 }

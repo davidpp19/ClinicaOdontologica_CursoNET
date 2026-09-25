@@ -16,14 +16,14 @@ public class HistorialMedicosController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<HistorialMedico>>> GetHistorialMedico()
     {
-        return await _context.HistorialMedico.ToListAsync();
+        return await _context.HistorialMedicos.ToListAsync();
     }
 
     // GET: api/HistorialMedico/5
     [HttpGet("{idhistorialmedico}")]
     public async Task<ActionResult<HistorialMedico>> GetHistorialMedico(int idhistorialmedico)
     {
-        var historialmedico = await _context.HistorialMedico.FindAsync(idhistorialmedico);
+        var historialmedico = await _context.HistorialMedicos.FindAsync(idhistorialmedico);
 
         if (historialmedico == null)
         {
@@ -69,7 +69,7 @@ public class HistorialMedicosController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<HistorialMedico>> PostHistorialMedico(HistorialMedico historialmedico)
     {
-        _context.HistorialMedico.Add(historialmedico);
+        _context.HistorialMedicos.Add(historialmedico);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetHistorialMedico", new { idhistorialmedico = historialmedico.IdHistorialMedico }, historialmedico);
@@ -79,13 +79,13 @@ public class HistorialMedicosController : ControllerBase
     [HttpDelete("{idhistorialmedico}")]
     public async Task<IActionResult> DeleteHistorialMedico(int? idhistorialmedico)
     {
-        var historialmedico = await _context.HistorialMedico.FindAsync(idhistorialmedico);
+        var historialmedico = await _context.HistorialMedicos.FindAsync(idhistorialmedico);
         if (historialmedico == null)
         {
             return NotFound();
         }
 
-        _context.HistorialMedico.Remove(historialmedico);
+        _context.HistorialMedicos.Remove(historialmedico);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class HistorialMedicosController : ControllerBase
 
     private bool HistorialMedicoExists(int? idhistorialmedico)
     {
-        return _context.HistorialMedico.Any(e => e.IdHistorialMedico == idhistorialmedico);
+        return _context.HistorialMedicos.Any(e => e.IdHistorialMedico == idhistorialmedico);
     }
 }

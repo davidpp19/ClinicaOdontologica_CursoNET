@@ -16,14 +16,14 @@ public class PacientesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Paciente>>> GetPaciente()
     {
-        return await _context.Paciente.ToListAsync();
+        return await _context.Pacientes.ToListAsync();
     }
 
     // GET: api/Paciente/5
     [HttpGet("{idpaciente}")]
     public async Task<ActionResult<Paciente>> GetPaciente(int idpaciente)
     {
-        var paciente = await _context.Paciente.FindAsync(idpaciente);
+        var paciente = await _context.Pacientes.FindAsync(idpaciente);
 
         if (paciente == null)
         {
@@ -69,7 +69,7 @@ public class PacientesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Paciente>> PostPaciente(Paciente paciente)
     {
-        _context.Paciente.Add(paciente);
+        _context.Pacientes.Add(paciente);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetPaciente", new { idpaciente = paciente.IdPaciente }, paciente);
@@ -79,13 +79,13 @@ public class PacientesController : ControllerBase
     [HttpDelete("{idpaciente}")]
     public async Task<IActionResult> DeletePaciente(int? idpaciente)
     {
-        var paciente = await _context.Paciente.FindAsync(idpaciente);
+        var paciente = await _context.Pacientes.FindAsync(idpaciente);
         if (paciente == null)
         {
             return NotFound();
         }
 
-        _context.Paciente.Remove(paciente);
+        _context.Pacientes.Remove(paciente);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class PacientesController : ControllerBase
 
     private bool PacienteExists(int? idpaciente)
     {
-        return _context.Paciente.Any(e => e.IdPaciente == idpaciente);
+        return _context.Pacientes.Any(e => e.IdPaciente == idpaciente);
     }
 }

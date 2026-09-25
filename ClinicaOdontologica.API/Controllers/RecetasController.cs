@@ -16,14 +16,14 @@ public class RecetasController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Receta>>> GetReceta()
     {
-        return await _context.Receta.ToListAsync();
+        return await _context.Recetas.ToListAsync();
     }
 
     // GET: api/Receta/5
     [HttpGet("{idreceta}")]
     public async Task<ActionResult<Receta>> GetReceta(int idreceta)
     {
-        var receta = await _context.Receta.FindAsync(idreceta);
+        var receta = await _context.Recetas.FindAsync(idreceta);
 
         if (receta == null)
         {
@@ -69,7 +69,7 @@ public class RecetasController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Receta>> PostReceta(Receta receta)
     {
-        _context.Receta.Add(receta);
+        _context.Recetas.Add(receta);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetReceta", new { idreceta = receta.IdReceta }, receta);
@@ -79,13 +79,13 @@ public class RecetasController : ControllerBase
     [HttpDelete("{idreceta}")]
     public async Task<IActionResult> DeleteReceta(int? idreceta)
     {
-        var receta = await _context.Receta.FindAsync(idreceta);
+        var receta = await _context.Recetas.FindAsync(idreceta);
         if (receta == null)
         {
             return NotFound();
         }
 
-        _context.Receta.Remove(receta);
+        _context.Recetas.Remove(receta);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -93,6 +93,6 @@ public class RecetasController : ControllerBase
 
     private bool RecetaExists(int? idreceta)
     {
-        return _context.Receta.Any(e => e.IdReceta == idreceta);
+        return _context.Recetas.Any(e => e.IdReceta == idreceta);
     }
 }

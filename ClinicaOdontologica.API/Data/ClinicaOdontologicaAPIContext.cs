@@ -7,11 +7,11 @@ public class ClinicaOdontologicaAPIContext(DbContextOptions<ClinicaOdontologicaA
     public DbSet<ClinicaOdontologica.Modelos.DetalleCita> DetalleCitas { get; set; } = default!;
     public DbSet<ClinicaOdontologica.Modelos.Especialidad> Especialidades { get; set; } = default!;
     public DbSet<ClinicaOdontologica.Modelos.Factura> Facturas { get; set; } = default!;
-    public DbSet<ClinicaOdontologica.Modelos.HistorialMedico> HistorialMedico { get; set; } = default!;
-    public DbSet<ClinicaOdontologica.Modelos.Odontologo> Odontologo { get; set; } = default!;
-    public DbSet<ClinicaOdontologica.Modelos.Paciente> Paciente { get; set; } = default!;
-    public DbSet<ClinicaOdontologica.Modelos.Receta> Receta { get; set; } = default!;
-    public DbSet<ClinicaOdontologica.Modelos.Tratamiento> Tratamiento { get; set; } = default!;
+    public DbSet<ClinicaOdontologica.Modelos.HistorialMedico> HistorialMedicos { get; set; } = default!;
+    public DbSet<ClinicaOdontologica.Modelos.Odontologo> Odontologos { get; set; } = default!;
+    public DbSet<ClinicaOdontologica.Modelos.Paciente> Pacientes { get; set; } = default!;
+    public DbSet<ClinicaOdontologica.Modelos.Receta> Recetas { get; set; } = default!;
+    public DbSet<ClinicaOdontologica.Modelos.Tratamiento> Tratamientos { get; set; } = default!;
 
 
 }

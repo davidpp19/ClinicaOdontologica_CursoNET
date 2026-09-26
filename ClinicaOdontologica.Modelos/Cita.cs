@@ -50,7 +50,7 @@ namespace ClinicaOdontologica.Modelos
 
         //Relaciones
 
-        List<DetalleCita>? DetallesCita { get; set; } = new List<DetalleCita>();
-        List<Receta>? Recetas { get; set; } = new List<Receta>();
+        public List<DetalleCita>? DetallesCita { get; set; } = new List<DetalleCita>();
+        public List<Receta>? Recetas { get; set; } = new List<Receta>();
     }
 }

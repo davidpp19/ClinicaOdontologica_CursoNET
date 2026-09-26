@@ -1,15 +1,12 @@
 using ClinicaOdontologica.Consumer;
 using ClinicaOdontologica.Modelos;
 
-
 CRUD<Cita>.Endpoint = "https://localhost:7079/api/Citas";
-
+CRUD<Consultorio>.Endpoint = "https://localhost:7079/api/Consultorios";
+CRUD<DetalleCita>.Endpoint = "https://localhost:7079/api/DetallesCitas";
+CRUD<Especialidad>.Endpoint = "https://localhost:7079/api/Especialidades";
 
 var builder = WebApplication.CreateBuilder(args);
-
-
-
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

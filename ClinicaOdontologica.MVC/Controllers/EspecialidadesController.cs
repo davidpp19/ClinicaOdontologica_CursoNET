@@ -1,101 +1,104 @@
-using Microsoft.AspNetCore.Mvc;
-using ClinicaOdontologica.Modelos;
-using ClinicaOdontologica.Consumer;
 
-public class CitasController : Controller
+using Microsoft.AspNetCore.Mvc;
+using ClinicaOdontologica.Consumer;
+using ClinicaOdontologica.Modelos;
+
+public class EspecialidadesController : Controller
 {
-    // GET: CITAS
+
+    // GET: ESPECIALIDADS
     public ActionResult Index()    
     {
-        var citas = CRUD<Cita>.GetAll();
-        return View(citas);
+        var especialidades = CRUD<Especialidad>.GetAll();
+        return View(especialidades);
     }
 
-    // GET: CITAS/Details/5
+    // GET: ESPECIALIDADS/Details/5
     public ActionResult Details(int id)
     {
-        var cita = CRUD<Cita>.GetById(id);
-        if (cita == null)
+        var especialidad = CRUD<Especialidad>.GetById(id);
+        if (id == null)
         {
             return NotFound();
         }
-        return View(cita);
+        return View(especialidad);
     }
 
-    // GET: CITAS/Create
+    // GET: ESPECIALIDADS/Create
     public ActionResult Create()
     {
         return View();
     }
 
-    // POST: CITAS/Create
+    // POST: ESPECIALIDADS/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Create(Cita cita)
+    public ActionResult Create(Especialidad especialidad)
     {
         try
         {
-            CRUD<Cita>.Create(cita);
+            CRUD<Especialidad>.Create(especialidad);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
             ModelState.AddModelError("", ex.Message);
-            return View(cita);
+            return View(especialidad);
         }
     }
 
-    // GET: CITAS/Edit/5
+    // GET: ESPECIALIDADS/Edit/5
     public ActionResult Edit(int id)
     {
-        var cita = CRUD<Cita>.GetById(id);
-        if (cita == null)
+        var especialidad = CRUD<Especialidad>.GetById(id);
+
+        if (especialidad == null)
         {
             return NotFound();
         }
-        return View(cita);
+        return View(especialidad);
     }
 
-    // POST: CITAS/Edit/5
+    // POST: ESPECIALIDADS/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, Cita cita)
+    public ActionResult Edit(int id, Especialidad especialidad)
     {
         try
         {
-            CRUD<Cita>.Update(id, cita);
+            CRUD<Especialidad>.Update(id, especialidad);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)
         {
             ModelState.AddModelError("", ex.Message);
-            return View(cita);
+            return View(especialidad);
         }
     }
 
-    // GET: CITAS/Delete/5
+    // GET: ESPECIALIDADS/Delete/5
     public ActionResult Delete(int id)
     {
-        var cita = CRUD<Cita>.GetById(id);
-        if (cita == null)
+        var especialidad = CRUD<Especialidad>.GetById(id);
+        if (especialidad == null)
         {
             return NotFound();
         }
-        return View(cita);
+        return View(especialidad);
     }
 
-    // POST: CITAS/Delete/5
+    // POST: ESPECIALIDADS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, Cita cita)
+    public ActionResult Delete(int id, Especialidad especialidad)
     {
         try
         {
-            CRUD<Cita>.Delete(id);
+            CRUD<Especialidad>.Delete(id);
             return RedirectToAction(nameof(Index));
         }
         catch (Exception ex)

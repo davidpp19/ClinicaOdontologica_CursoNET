@@ -11,25 +11,25 @@ namespace ClinicaOdontologica.Modelos
     [Table("consultorios")]
     public class Consultorio
     {
-            [Key]
-            [Column("id_consultorio")]
-            public int IdConsultorio { get; set; }
+        [Key]
+        [Column("id_consultorio")]
+        public int IdConsultorio { get; set; }
 
-            [Column("numero_sala")]
-            [MaxLength(10)]
-            [Required]
-            public string numeroSala { get; set; }
+        [Column("numero_sala")]
+        [MaxLength(10)]
+        [Required]
+        public string numeroSala { get; set; }
 
-            [Column("piso")]
-            [Required]
-            public int piso { get; set; }
+        [Column("piso")]
+        [Required]
+        public int piso { get; set; }
 
-            [Column("equipamiento_principal")]
-            [MaxLength(100)]
-            public string? equipamientoPrincipal { get; set; }
+        [Column("equipamiento_principal")]
+        [MaxLength(100)]
+        public string? equipamientoPrincipal { get; set; }
 
         //Relaciones
 
         public List<Cita>? Citas { get; set; } = new List<Cita>();
-        }
+    }
 }

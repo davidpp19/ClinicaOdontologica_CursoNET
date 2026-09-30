@@ -16,7 +16,7 @@ public class DetalleCitasController : Controller
     public ActionResult Details(int id)
     {
         var detallecita = CRUD<DetalleCita>.GetById(id);
-        if (id == null)
+        if (detallecita == null)
         {
             return NotFound();
         }

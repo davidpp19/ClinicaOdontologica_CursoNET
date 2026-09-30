@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ClinicaOdontologica.Modelos;
 using ClinicaOdontologica.Consumer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class CitasController : Controller
 {
@@ -22,9 +23,45 @@ public class CitasController : Controller
         return View(cita);
     }
 
+    //Metodo interno para obtener los pacientes.
+    private List<SelectListItem> GetPacientes()
+    {
+        var pacientes = CRUD<Paciente>.GetAll();
+        return pacientes.Select(p => new SelectListItem
+        {
+            Value = p.IdPaciente.ToString(),
+            Text = p.nombre + " " + p.apellido
+        }).ToList();
+    }
+
+    //Metodo interno para obtener los odontologos.
+    private List<SelectListItem> GetOdontologos()
+    {
+        var odontologos = CRUD<Odontologo>.GetAll();
+        return odontologos.Select(o => new SelectListItem
+        {
+            Value = o.IdOdontologo.ToString(),
+            Text = o.nombre + " " + o.apellido
+        }).ToList();
+    }
+
+    //Metodo interno para obtener los Consultorios.
+    private List<SelectListItem> GetConsultorios()
+    {
+        var consultorios = CRUD<Consultorio>.GetAll();
+        return consultorios.Select(c => new SelectListItem
+        {
+            Value = c.IdConsultorio.ToString(),
+            Text = c.piso + " - " + c.numeroSala
+        }).ToList();
+    }
+
     // GET: CITAS/Create
     public ActionResult Create()
     {
+        ViewBag.Pacientes = GetPacientes();
+        ViewBag.Odontologos = GetOdontologos();
+        ViewBag.Consultorios = GetConsultorios();
         return View();
     }
 
@@ -51,6 +88,9 @@ public class CitasController : Controller
     public ActionResult Edit(int id)
     {
         var cita = CRUD<Cita>.GetById(id);
+        ViewBag.Pacientes = GetPacientes();
+        ViewBag.Odontologos = GetOdontologos();
+        ViewBag.Consultorios = GetConsultorios();
         if (cita == null)
         {
             return NotFound();

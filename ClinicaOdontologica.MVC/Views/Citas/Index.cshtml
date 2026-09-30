@@ -22,15 +22,6 @@
                 @Html.DisplayNameFor(model => model.estadoCita)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdPaciente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdOdontologo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdConsultorio)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Paciente)
             </th>
             <th>
@@ -61,22 +52,14 @@
                 @Html.DisplayFor(model => item.estadoCita)
             </td>
             <td>
-                @Html.DisplayFor(model => item.IdPaciente)
+                @Html.DisplayFor(model => item.Paciente.nombre) @Html.DisplayFor(model => item.Paciente.apellido)
             </td>
             <td>
-                @Html.DisplayFor(model => item.IdOdontologo)
+                @Html.DisplayFor(model => item.Odontologo.nombre) @Html.DisplayFor(model => item.Odontologo.apellido)
             </td>
             <td>
-                @Html.DisplayFor(model => item.IdConsultorio)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Paciente)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Odontologo)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Consultorio)
+                Piso @Html.DisplayFor(model => item.Consultorio.piso)
+                    @Html.DisplayFor(model => item.Consultorio.numeroSala)
             </td>
             <td>
                 @Html.DisplayFor(model => item.DetallesCita)

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ClinicaOdontologica.API.Migrations
 {
     /// <inheritdoc />
-    public partial class V02 : Migration
+    public partial class V03 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -75,6 +75,23 @@ namespace ClinicaOdontologica.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(type: "text", nullable: false),
+                    apellido = table.Column<string>(type: "text", nullable: false),
+                    correo = table.Column<string>(type: "text", nullable: false),
+                    nombreUsuario = table.Column<string>(type: "text", nullable: false),
+                    contrasenia = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "odontologos",
                 columns: table => new
                 {
@@ -124,7 +141,7 @@ namespace ClinicaOdontologica.API.Migrations
                 {
                     id_cita = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fecha_cita = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    fecha_cita = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     motivo = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     estado_cita = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     id_paciente = table.Column<int>(type: "integer", nullable: false),
@@ -188,7 +205,7 @@ namespace ClinicaOdontologica.API.Migrations
                 {
                     id_factura = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fecha_emision = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    fecha_emision = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     subtotal = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
                     impuestos = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
                     total = table.Column<decimal>(type: "numeric(10,2)", nullable: false),
@@ -212,7 +229,7 @@ namespace ClinicaOdontologica.API.Migrations
                 {
                     id_receta = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    fecha_emision = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    fecha_emision = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     indicaciones = table.Column<string>(type: "text", nullable: false),
                     id_cita = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -287,6 +304,9 @@ namespace ClinicaOdontologica.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "recetas");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Tratamientos");

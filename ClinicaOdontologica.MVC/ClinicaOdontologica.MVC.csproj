@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClinicaOdontologica.Consumer\ClinicaOdontologica.Consumer.csproj" />
     <ProjectReference Include="..\ClinicaOdontologica.Modelos\ClinicaOdontologica.Modelos.csproj" />
+    <ProjectReference Include="..\ClinicaOdontologica.Servicios\ClinicaOdontologica.Servicios.csproj" />
   </ItemGroup>
 
 </Project>

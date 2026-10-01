@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using ClinicaOdontologica.Modelos;
 using ClinicaOdontologica.Consumer;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
+[Authorize]
 public class CitasController : Controller
 {
     // GET: CITAS

@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ClinicaOdontologica.API.Migrations
 {
     [DbContext(typeof(ClinicaOdontologicaAPIContext))]
-    [Migration("20260925015628_V02")]
-    partial class V02
+    [Migration("20261001023948_V03")]
+    partial class V03
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace ClinicaOdontologica.API.Migrations
                         .HasColumnName("estado_cita");
 
                     b.Property<DateTime>("fechaCita")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_cita");
 
                     b.Property<string>("motivo")
@@ -177,7 +177,7 @@ namespace ClinicaOdontologica.API.Migrations
                         .HasColumnName("estado_pago");
 
                     b.Property<DateTime>("fechaEmision")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_emision");
 
                     b.Property<decimal>("impuesto")
@@ -327,7 +327,7 @@ namespace ClinicaOdontologica.API.Migrations
                         .HasColumnName("id_cita");
 
                     b.Property<DateTime>("fechaEmision")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_emision");
 
                     b.Property<string>("indicacion")
@@ -370,22 +370,55 @@ namespace ClinicaOdontologica.API.Migrations
                     b.ToTable("Tratamientos");
                 });
 
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("apellido")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("contrasenia")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("correo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("nombreUsuario")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("ClinicaOdontologica.Modelos.Cita", b =>
                 {
                     b.HasOne("ClinicaOdontologica.Modelos.Consultorio", "Consultorio")
-                        .WithMany()
+                        .WithMany("Citas")
                         .HasForeignKey("IdConsultorio")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ClinicaOdontologica.Modelos.Odontologo", "Odontologo")
-                        .WithMany()
+                        .WithMany("Citas")
                         .HasForeignKey("IdOdontologo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ClinicaOdontologica.Modelos.Paciente", "Paciente")
-                        .WithMany()
+                        .WithMany("Citas")
                         .HasForeignKey("IdPaciente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -400,13 +433,13 @@ namespace ClinicaOdontologica.API.Migrations
             modelBuilder.Entity("ClinicaOdontologica.Modelos.DetalleCita", b =>
                 {
                     b.HasOne("ClinicaOdontologica.Modelos.Cita", "Cita")
-                        .WithMany()
+                        .WithMany("DetallesCita")
                         .HasForeignKey("IdCita")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ClinicaOdontologica.Modelos.Tratamiento", "Tratamiento")
-                        .WithMany()
+                        .WithMany("DetallesCita")
                         .HasForeignKey("IdTratamiento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -441,7 +474,7 @@ namespace ClinicaOdontologica.API.Migrations
             modelBuilder.Entity("ClinicaOdontologica.Modelos.Odontologo", b =>
                 {
                     b.HasOne("ClinicaOdontologica.Modelos.Especialidad", "Especialidad")
-                        .WithMany()
+                        .WithMany("Odontologos")
                         .HasForeignKey("IdEspecialidad")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -452,12 +485,44 @@ namespace ClinicaOdontologica.API.Migrations
             modelBuilder.Entity("ClinicaOdontologica.Modelos.Receta", b =>
                 {
                     b.HasOne("ClinicaOdontologica.Modelos.Cita", "Cita")
-                        .WithMany()
+                        .WithMany("Recetas")
                         .HasForeignKey("IdCita")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cita");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Cita", b =>
+                {
+                    b.Navigation("DetallesCita");
+
+                    b.Navigation("Recetas");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Consultorio", b =>
+                {
+                    b.Navigation("Citas");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Especialidad", b =>
+                {
+                    b.Navigation("Odontologos");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Odontologo", b =>
+                {
+                    b.Navigation("Citas");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Paciente", b =>
+                {
+                    b.Navigation("Citas");
+                });
+
+            modelBuilder.Entity("ClinicaOdontologica.Modelos.Tratamiento", b =>
+                {
+                    b.Navigation("DetallesCita");
                 });
 #pragma warning restore 612, 618
         }

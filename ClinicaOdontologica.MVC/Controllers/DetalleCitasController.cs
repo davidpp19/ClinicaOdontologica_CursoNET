@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using ClinicaOdontologica.Consumer;
 using ClinicaOdontologica.Modelos;
+using Microsoft.AspNetCore.Authorization;
+
+[Authorize]
 
 public class DetalleCitasController : Controller
 {
